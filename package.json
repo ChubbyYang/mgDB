@@ -23,6 +23,8 @@
   "dependencies": {
     "koa": "^2.4.1",
     "koa-router": "^7.3.0",
-    "koa-static": "^4.0.2"
+    "koa-static": "^4.0.2",
+    "mongodb": "^3.0.0-rc0",
+    "mongoose": "^4.13.7"
   }
 }
