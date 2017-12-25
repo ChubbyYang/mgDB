@@ -6,19 +6,19 @@ const mongoose = require('mongoose');
 const DB_URL  = 'mongodb://localhost:27017/food';
 
 // Use connect method to connect to the Server
-mongoose.connect(DB_URL);
+mongoose.connect(DB_URL,{useMongoClient:true});
 const db = mongoose.connection;
 db.once('open' ,() => {
-	console.log('连接数据库成功');
+	console.log('MongoDb is connected.');
 })
 
-db.on('error', function(error) {
+db.on('error', (error) => {
     console.error('Error in MongoDb connection: ' + error);
     mongoose.disconnect();
 });
 
-db.on('close', function() {
-    console.log('数据库断开，重新连接数据库');
+db.on('close', () => {
+    console.log('MongoDb is closed.');
     mongoose.connect(config.url, {server:{auto_reconnect:true}});
 });
 
