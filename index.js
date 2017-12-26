@@ -13,14 +13,19 @@ const router = new Router();
 app.use(serve('public'));
 
 // response
-router.get('/good', async (ctx, next) => {
+router.get('/', async (ctx, next) => {
+  await next();
   await getGoods(goods).then((data) => {
     ctx.body = data;
   });
 });
 
 app.use(router.routes()).use(router.allowedMethods());
-app.listen(3000,()=>{
-  console.log('Server is Ready...');
+
+const port = 3000;
+const hostname = '127.0.0.1';
+app.listen(port,hostname,()=>{
+  console.log(`\nServer is running at port:${port}`);
+  console.log(`url: http://${hostname}:${port}`);
 });
 
